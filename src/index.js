@@ -6,7 +6,6 @@ import reportWebVitals from "./reportWebVitals";
 import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./store/Reducer/rootReducer";
 import { Provider } from "react-redux";
-import firebase from "firebase/app";
 import thunk from "redux-thunk";
 import { ReactReduxFirebaseProvider, getFirebase } from "react-redux-firebase";
 import {
@@ -14,6 +13,7 @@ import {
   getFirestore,
   reduxFirestore,
 } from "redux-firestore";
+import firebase from "firebase/app";
 import fbconfig from "./config/fbconfig";
 
 const store = createStore(
@@ -27,7 +27,7 @@ const rrfProps = {
   firebase,
   config: fbconfig,
   dispatch: store.dispatch,
-  createFirestoreInstance,
+  createFirestoreInstance, // <- needed if using firestore
 };
 ReactDOM.render(
   <Provider store={store}>
